@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { SERVICES } from "@/lib/constants";
+import { services } from "@/lib/constants";
 
 const BASE_URL = "https://nuvemled.com.br";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const servicePages = SERVICES.map((service) => ({
+  const servicePages = services.map((service) => ({
     url: `${BASE_URL}/servicos/${service.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

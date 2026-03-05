@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { WhatsAppFAB } from "@/components/whatsapp-fab";
-import { SITE } from "@/lib/constants";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { WhatsAppFAB } from "@/components/WhatsAppFAB";
+import { site } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,19 +14,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nuvemled.com.br"),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s | ${SITE.name}`,
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s | ${site.name}`,
   },
-  description: SITE.description,
+  description: site.description,
   icons: {
     icon: { url: "/favicon.svg", type: "image/svg+xml" },
   },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline}`,
-    description: SITE.description,
+    siteName: site.name,
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
     images: [
       {
         url: "/og-image.png",
@@ -57,7 +57,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "NuvemLED",
-              description: SITE.description,
+              description: site.description,
               url: "https://nuvemled.com.br",
               telephone: "+5544988117615",
               address: {

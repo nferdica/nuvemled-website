@@ -1,4 +1,4 @@
-export const SITE = {
+export const site = {
   name: "NuvemLED",
   tagline: "Iluminando Seus Espaços",
   description:
@@ -9,7 +9,12 @@ export const SITE = {
   whatsappMessage: "Gostaria de um projeto de painel de LED!",
 } as const;
 
-export const NAV_LINKS = [
+export function getWhatsAppUrl(message?: string) {
+  const text = message ?? site.whatsappMessage;
+  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
+export const navLinks = [
   { label: "Início", href: "/" },
   {
     label: "Serviços",
@@ -27,7 +32,7 @@ export const NAV_LINKS = [
   { label: "Contato", href: "/contato" },
 ] as const;
 
-export const SERVICES = [
+export const services = [
   {
     slug: "igrejas",
     title: "Igrejas",
@@ -126,17 +131,17 @@ export const SERVICES = [
   },
 ] as const;
 
-export const ADDRESS = {
+export const address = {
+  street: "Av. Melvin Jones, 510",
   city: "Maringá, PR",
   phone: "(44) 98811-7615",
-  address: "Av. Melvin Jones, 510 — Maringá, PR",
 } as const;
 
-export const SOCIAL_LINKS = [
+export const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/nuvemled", icon: "Instagram" },
 ] as const;
 
-export const VALUES = [
+export const values = [
   {
     icon: "Lightbulb",
     title: "Inovação",
@@ -154,7 +159,7 @@ export const VALUES = [
   },
 ] as const;
 
-export const FAQ_ITEMS = [
+export const faqItems = [
   {
     question: "Quais tipos de painéis de LED vocês oferecem?",
     answer:
