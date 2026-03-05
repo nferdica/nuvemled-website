@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
-import { Logo } from "@/components/logo";
 import { SITE, NAV_LINKS, ADDRESS, SOCIAL_LINKS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -17,7 +17,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Column 1: Logo + Info */}
           <div className="flex flex-col gap-4">
-            <Logo />
+            <Link href="/">
+              <Image src="/logo-white.svg" alt="NuvemLED" width={160} height={22} />
+            </Link>
             <p className="text-sm text-white/60">CNPJ: {SITE.cnpj}</p>
 <div className="flex flex-col gap-1.5 mt-2">
               <span className="flex items-center gap-1.5 text-sm text-white/80">
