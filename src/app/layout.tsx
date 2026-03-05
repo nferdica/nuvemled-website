@@ -12,6 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nuvemled.com.br"),
   title: {
     default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s | ${SITE.name}`,
@@ -30,6 +31,14 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 2455,
+        height: 1288,
+        alt: "NuvemLED — Iluminando Seus Espaços",
+      },
+    ],
   },
   robots: {
     index: true,
