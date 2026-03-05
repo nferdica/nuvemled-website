@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Church, Store, Monitor, Home, Sun, Music, ArrowRight } from "lucide-react";
+import { LedGridPattern } from "@/components/ui/led-grid-pattern";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
@@ -40,7 +41,15 @@ export default function ServicesPage() {
                   href={`/servicos/${service.slug}`}
                   className="group block rounded-2xl overflow-hidden border border-neutral-light hover:border-primary transition-colors duration-300 shadow-sm hover:shadow-md"
                 >
-                  <div className="aspect-video bg-neutral-light" />
+                  <div className={`relative aspect-video overflow-hidden ${
+                    index % 3 === 0 ? "gradient-hero" : index % 3 === 1 ? "gradient-accent" : "gradient-dark"
+                  }`}>
+                    <LedGridPattern variant="dark" />
+                    <Icon className="absolute inset-0 m-auto w-16 h-16 text-white/15" />
+                    {/* Corner decorations */}
+                    <div className="absolute top-3 right-3 w-6 h-6 rounded-full border border-white/10" />
+                    <div className="absolute bottom-3 left-3 w-8 h-3 rounded-sm bg-white/5" />
+                  </div>
 
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-3">

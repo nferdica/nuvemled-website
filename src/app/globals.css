@@ -12,6 +12,7 @@
   --color-neutral-dark: #1A1A1A;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --animate-marquee: marquee 20s linear infinite;
+  --animate-led-pulse: led-pulse 3s ease-in-out infinite;
 }
 
 @keyframes marquee {
@@ -19,21 +20,24 @@
   100% { transform: translateX(-50%); }
 }
 
+@keyframes led-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
 body {
-  background: var(--color-neutral-white);
-  color: var(--color-neutral-dark);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-neutral-white text-neutral-dark antialiased;
 }
 
 .gradient-hero {
-  background: linear-gradient(135deg, #0B0B31 0%, #14107E 50%, #430A7D 100%);
+  @apply bg-linear-135 from-primary-dark via-primary to-accent-purple;
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, #14107E 0%, #600088 50%, #8702A1 100%);
+  @apply bg-linear-135 from-primary via-accent-magenta to-accent-violet;
 }
 
 .gradient-dark {
-  background: linear-gradient(180deg, #0B0B31 0%, #000960 100%);
+  @apply bg-linear-to-b from-primary-dark to-primary-medium;
 }
+

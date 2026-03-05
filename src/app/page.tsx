@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Church, Store, Monitor, Home, Sun, Music, ArrowRight } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { FaqAccordion } from "@/components/faq-accordion";
+import { GoogleMap } from "@/components/google-map";
 import { SITE, SERVICES } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "NuvemLED — Iluminando Seus Espaços",
+  description:
+    "Soluções personalizadas de painéis de LED para igrejas, comércios, totens, residências, outdoor e show business. Transforme seu espaço com a NuvemLED.",
+};
 
 const iconMap = {
   Church,
@@ -19,8 +29,19 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="gradient-hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl w-full py-24">
+      <section className="min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/nuvemled-hero.png"
+          alt="Painel de LED NuvemLED iluminando ambiente"
+          fill
+          priority
+          className="object-cover"
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-primary-dark/30" />
+
+        <div className="relative mx-auto max-w-7xl w-full py-24">
           <AnimateOnScroll>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight whitespace-pre-line">
               {"AQUI, TODO\nESPAÇO É SEU"}
@@ -54,8 +75,6 @@ export default function HomePage() {
           </AnimateOnScroll>
         </div>
 
-        {/* Bottom gradient overlay */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Marquee Banner */}
@@ -116,27 +135,31 @@ export default function HomePage() {
 
       {/* Philosophy Section */}
       <Section dark>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-3xl mx-auto text-center">
           <AnimateOnScroll>
-            <div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                Iluminando mais do que espaços
-              </h2>
-              <p className="text-lg text-white/70 leading-relaxed">
-                Na NuvemLED, acreditamos que cada espaço conta uma história. Somos mais do que
-                uma empresa de Telas de LED — somos arquitetos da luz, artistas da inovação.
-                Nossa missão é transformar ambientes comuns em experiências extraordinárias,
-                combinando tecnologia de ponta com design inteligente para criar impacto visual
-                duradouro onde quer que você esteja.
-              </p>
-            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+              Iluminando mais do que espaços
+            </h2>
+            <p className="text-lg text-white/70 leading-relaxed">
+              Na NuvemLED, acreditamos que cada espaço conta uma história. Somos mais do que
+              uma empresa de Telas de LED — somos arquitetos da luz, artistas da inovação.
+              Nossa missão é transformar ambientes comuns em experiências extraordinárias,
+              combinando tecnologia de ponta com design inteligente para criar impacto visual
+              duradouro onde quer que você esteja.
+            </p>
           </AnimateOnScroll>
+        </div>
+      </Section>
 
-          <AnimateOnScroll delay={0.2}>
-            <div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
-              <span className="text-white/40 text-sm font-medium">Vídeo institucional</span>
-            </div>
+      {/* FAQ Section */}
+      <Section>
+        <div className="max-w-3xl mx-auto">
+          <AnimateOnScroll>
+            <h2 className="text-4xl sm:text-5xl font-bold text-neutral-dark mb-10 text-center">
+              Perguntas Frequentes
+            </h2>
           </AnimateOnScroll>
+          <FaqAccordion />
         </div>
       </Section>
 
@@ -163,6 +186,9 @@ export default function HomePage() {
           </div>
         </AnimateOnScroll>
       </Section>
+
+      {/* Google Maps */}
+      <GoogleMap />
     </>
   );
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Phone, MapPin, Mail, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
-import { SITE, BRANCHES } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -22,153 +23,32 @@ export default function ContatoPage() {
       />
 
       <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left column: contact form */}
+        <div className="max-w-2xl mx-auto text-center">
           <AnimateOnScroll>
-            <h2 className="text-3xl font-bold text-neutral-dark mb-8">
-              Envie uma mensagem
-            </h2>
-
-            <form className="space-y-5">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-neutral-dark mb-1.5"
-                >
-                  Nome
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  placeholder="Seu nome completo"
-                  className="w-full rounded-lg border border-neutral-light px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
-                />
+            <div className="mb-8">
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10 mb-6">
+                <FaWhatsapp className="h-8 w-8 text-green-500" />
               </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-neutral-dark mb-1.5"
-                >
-                  E-mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="seu@email.com"
-                  className="w-full rounded-lg border border-neutral-light px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-neutral-dark mb-1.5"
-                >
-                  Telefone
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  placeholder="(00) 00000-0000"
-                  className="w-full rounded-lg border border-neutral-light px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-neutral-dark mb-1.5"
-                >
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  placeholder="Descreva seu projeto ou dúvida..."
-                  className="w-full rounded-lg border border-neutral-light px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-              >
-                Enviar mensagem
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </form>
-          </AnimateOnScroll>
-
-          {/* Right column: WhatsApp CTA, email, branches */}
-          <AnimateOnScroll delay={0.2}>
-            {/* WhatsApp CTA card */}
-            <div className="gradient-hero rounded-2xl p-8 text-white mb-8">
-              <h3 className="text-2xl font-bold mb-3">Prefere WhatsApp?</h3>
-              <p className="text-white/80 mb-6">
-                Fale diretamente com nossa equipe pelo WhatsApp e receba um
-                atendimento rápido e personalizado para o seu projeto de LED.
+              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-dark mb-4">
+                Fale conosco pelo WhatsApp
+              </h2>
+              <p className="text-lg text-neutral-dark/70 leading-relaxed mb-8">
+                Nosso atendimento é feito exclusivamente pelo WhatsApp. Clique no
+                botão abaixo para iniciar uma conversa e receba um atendimento
+                rápido e personalizado para o seu projeto de LED.
               </p>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-green-500 px-10 py-4 text-sm font-bold text-white uppercase tracking-wider hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"
               >
                 Chamar no WhatsApp
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-
-            {/* Email info */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                <Mail className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-neutral-dark/60 mb-0.5">
-                  E-mail
-                </p>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="text-sm font-semibold text-neutral-dark hover:text-primary transition-colors"
-                >
-                  {SITE.email}
-                </a>
-              </div>
-            </div>
-
-            {/* Branches */}
-            <div>
-              <h3 className="text-xl font-bold text-neutral-dark mb-4">
-                Filiais
-              </h3>
-              <div className="space-y-3">
-                {BRANCHES.map((branch) => (
-                  <div
-                    key={branch.city}
-                    className="rounded-xl border border-neutral-light p-4"
-                  >
-                    <p className="font-bold text-neutral-dark mb-2">
-                      {branch.city}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm text-neutral-dark/70 mb-1">
-                      <Phone className="h-3.5 w-3.5 shrink-0 text-primary" />
-                      <span>{branch.phone}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-neutral-dark/70">
-                      <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" />
-                      <span>{branch.address}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </AnimateOnScroll>
+
         </div>
       </Section>
     </>

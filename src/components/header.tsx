@@ -3,25 +3,23 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, ChevronDown, MessageCircle } from "lucide-react";
+import { Menu, X, ChevronDown, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 
-const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
+const serviceIconMap: Record<string, React.ElementType> = {
+  "/servicos/igrejas": Church,
+  "/servicos/comercio": Store,
+  "/servicos/totens": Monitor,
+  "/servicos/residencial": Home,
+  "/servicos/outdoor": Sun,
+  "/servicos/show-business": Music,
+};
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -33,13 +31,7 @@ export function Header() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-primary-dark/90 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      }`}
-    >
+    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -54,6 +46,7 @@ export function Header() {
                     <button
                       className="flex items-center gap-1 text-white/90 hover:text-white text-sm font-medium transition-colors"
                       aria-haspopup="true"
+                      aria-expanded={false}
                     >
                       {link.label}
                       <ChevronDown
@@ -62,17 +55,22 @@ export function Header() {
                       />
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <div className="bg-primary-dark/95 backdrop-blur-md rounded-lg shadow-xl border border-white/10 py-2 min-w-[180px]">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
+                      <div className="bg-primary-dark/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/30 border border-white/10 p-2 min-w-[220px]" role="menu">
+                        {link.children.map((child) => {
+                          const Icon = serviceIconMap[child.href];
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              role="menuitem"
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
+                            >
+                              {Icon && <Icon size={16} className="text-white shrink-0" />}
+                              {child.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -90,19 +88,6 @@ export function Header() {
               );
             })}
           </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-accent-violet hover:bg-accent-magenta text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-200"
-            >
-              <MessageCircle size={16} />
-              Fale Conosco
-            </a>
-          </div>
 
           {/* Mobile Hamburger */}
           <button
@@ -145,16 +130,20 @@ export function Header() {
                       isOpen ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <div className="pl-4 py-1 flex flex-col gap-1">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-md transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                    <div className="pl-2 py-1 flex flex-col gap-1">
+                      {link.children.map((child) => {
+                        const Icon = serviceIconMap[child.href];
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="flex items-center gap-3 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-md transition-colors"
+                          >
+                            {Icon && <Icon size={15} className="text-white shrink-0" />}
+                            {child.label}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -172,18 +161,6 @@ export function Header() {
             );
           })}
 
-          {/* Mobile CTA */}
-          <div className="pt-3 mt-2 border-t border-white/10">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-accent-violet hover:bg-accent-magenta text-white text-sm font-semibold px-5 py-3 rounded-full transition-colors duration-200 w-full"
-            >
-              <MessageCircle size={16} />
-              Fale Conosco
-            </a>
-          </div>
         </nav>
       </div>
     </header>

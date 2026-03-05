@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
 import { PageHero } from "@/components/ui/page-hero";
 import { Section } from "@/components/ui/section";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SERVICES, SITE } from "@/lib/constants";
+
+const iconMap: Record<string, React.ElementType> = {
+  Church, Store, Monitor, Home, Sun, Music,
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -37,6 +41,8 @@ export default async function ServiceDetailPage({ params }: Props) {
     notFound();
   }
 
+  const Icon = iconMap[service.icon];
+
   const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
     `Olá! Gostaria de um orçamento para ${service.title}.`
   )}`;
@@ -48,67 +54,95 @@ export default async function ServiceDetailPage({ params }: Props) {
         subtitle={service.description}
       />
 
+      {/* About */}
       <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-3xl">
           <AnimateOnScroll>
-            <h2 className="text-3xl font-bold text-neutral-dark mb-4">
-              Sobre este serviço
+            <div className="flex items-center gap-3 mb-6">
+              {Icon && (
+                <Icon className="w-7 h-7 text-primary" />
+              )}
+              <h2 className="text-3xl font-bold text-neutral-dark">
+                Sobre este serviço
+              </h2>
+            </div>
+            <p className="text-lg text-neutral-dark/70 leading-relaxed">
+              {service.longDescription}
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </Section>
+
+      {/* Benefits */}
+      <Section dark>
+        <AnimateOnScroll>
+          <h2 className="text-3xl font-bold text-white mb-10">
+            Vantagens
+          </h2>
+        </AnimateOnScroll>
+
+        <div className="grid sm:grid-cols-2 gap-6">
+          {service.benefits.map((benefit, i) => (
+            <AnimateOnScroll key={i} delay={i * 0.1}>
+              <div className="flex gap-4 p-5 rounded-xl bg-white/5 border border-white/10">
+                <CheckCircle2 className="w-5 h-5 text-white shrink-0 mt-0.5" />
+                <p className="text-white/80 leading-relaxed">{benefit}</p>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </Section>
+
+      {/* Use Cases */}
+      <Section>
+        <AnimateOnScroll>
+          <h2 className="text-3xl font-bold text-neutral-dark mb-10">
+            Aplicações
+          </h2>
+        </AnimateOnScroll>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {service.useCases.map((useCase, i) => (
+            <AnimateOnScroll key={i} delay={i * 0.1}>
+              <div className="text-center p-6 rounded-xl border border-neutral-light hover:border-primary/30 hover:shadow-md transition-all">
+                <span className="text-2xl font-bold text-primary">{String(i + 1).padStart(2, "0")}</span>
+                <p className="text-sm font-medium text-neutral-dark mt-2">{useCase}</p>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <Section>
+        <AnimateOnScroll>
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-neutral-dark mb-4">
+              Pronto para seu projeto de {service.title}?
             </h2>
-
-            <p className="text-neutral-dark/70 leading-relaxed mb-3">
-              {service.description}
+            <p className="text-neutral-dark/70 mb-8">
+              Entre em contato e receba um orçamento personalizado para a sua necessidade.
             </p>
-            <p className="text-neutral-dark/70 leading-relaxed mb-8">
-              Na {SITE.name}, entregamos soluções de alta performance em painéis de LED, com tecnologia de ponta e suporte especializado para garantir o melhor resultado para o seu projeto.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary-medium transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
               >
                 Solicitar Orçamento
                 <ArrowRight className="w-4 h-4" />
               </a>
-
               <Link
                 href="/servicos"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-neutral-light text-neutral-dark font-medium hover:bg-neutral-light transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-neutral-dark/20 text-neutral-dark font-medium hover:bg-neutral-light transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Todos os Serviços
               </Link>
             </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={0.15}>
-            <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src={service.video}
-                title={service.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </Section>
-
-      <Section dark>
-        <AnimateOnScroll>
-          <h2 className="text-3xl font-bold text-white mb-8">Galeria</h2>
+          </div>
         </AnimateOnScroll>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[0, 1, 2, 3].map((i) => (
-            <AnimateOnScroll key={i} delay={i * 0.1}>
-              <div className="aspect-square rounded-xl bg-white/10" />
-            </AnimateOnScroll>
-          ))}
-        </div>
       </Section>
     </>
   );
