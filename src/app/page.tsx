@@ -103,21 +103,10 @@ export default function HomePage() {
 
       {/* Venda & Aluguel */}
       <Section dark>
-        <AnimateOnScroll>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 text-center">
-            Venda & Aluguel
-          </h2>
-          <p className="text-lg text-white/70 text-center max-w-2xl mx-auto mb-12">
-            Oferecemos painéis de LED para compra definitiva ou locação sob demanda — você escolhe o modelo ideal para o seu projeto.
-          </p>
-        </AnimateOnScroll>
-
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 max-w-4xl mx-auto">
           <AnimateOnScroll delay={0.1}>
-            <div className="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 mb-5">
-                <ShoppingCart className="w-7 h-7 text-white" />
-              </div>
+            <div className="p-8 text-center md:border-r md:border-white/10">
+              <ShoppingCart className="w-8 h-8 text-white mx-auto mb-5" />
               <h3 className="text-2xl font-bold text-white mb-3">Venda</h3>
               <p className="text-white/70 leading-relaxed mb-6">
                 Adquira seu painel de LED com projeto personalizado, instalação profissional e suporte técnico completo.
@@ -128,17 +117,15 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary uppercase tracking-wider hover:bg-neutral-light transition-colors"
               >
-                Faça seu Orçamento
+                Compre Já
                 <ArrowRight size={16} />
               </a>
             </div>
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={0.2}>
-            <div className="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 mb-5">
-                <CalendarClock className="w-7 h-7 text-white" />
-              </div>
+            <div className="p-8 text-center border-t border-white/10 md:border-t-0">
+              <CalendarClock className="w-8 h-8 text-white mx-auto mb-5" />
               <h3 className="text-2xl font-bold text-white mb-3">Aluguel</h3>
               <p className="text-white/70 leading-relaxed mb-6">
                 Alugue painéis de LED para eventos, temporadas ou projetos de curta duração com montagem e suporte incluso.
@@ -149,7 +136,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary uppercase tracking-wider hover:bg-neutral-light transition-colors"
               >
-                Faça seu Orçamento
+                Alugue Já
                 <ArrowRight size={16} />
               </a>
             </div>
