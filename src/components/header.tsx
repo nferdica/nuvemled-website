@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
-import { Logo } from "@/components/logo";
 import { NAV_LINKS } from "@/lib/constants";
 
 const serviceIconMap: Record<string, React.ElementType> = {
@@ -33,8 +33,9 @@ function HeaderInner() {
     <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Logo />
+          <Link href="/">
+            <Image src="/logo-white.svg" alt="NuvemLED" width={160} height={22} priority />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
