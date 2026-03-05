@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Church, Store, Monitor, Home, Sun, Music, ArrowRight } from "lucide-react";
+import { Church, Store, Monitor, Home, Sun, Music, ArrowRight, ShoppingCart, CalendarClock } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -100,6 +100,62 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* Venda & Aluguel */}
+      <Section dark>
+        <AnimateOnScroll>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 text-center">
+            Venda & Aluguel
+          </h2>
+          <p className="text-lg text-white/70 text-center max-w-2xl mx-auto mb-12">
+            Oferecemos painéis de LED para compra definitiva ou locação sob demanda — você escolhe o modelo ideal para o seu projeto.
+          </p>
+        </AnimateOnScroll>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <AnimateOnScroll delay={0.1}>
+            <div className="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 mb-5">
+                <ShoppingCart className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">Venda</h3>
+              <p className="text-white/70 leading-relaxed mb-6">
+                Adquira seu painel de LED com projeto personalizado, instalação profissional e suporte técnico completo.
+              </p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary uppercase tracking-wider hover:bg-neutral-light transition-colors"
+              >
+                Faça seu Orçamento
+                <ArrowRight size={16} />
+              </a>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={0.2}>
+            <div className="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 mb-5">
+                <CalendarClock className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">Aluguel</h3>
+              <p className="text-white/70 leading-relaxed mb-6">
+                Alugue painéis de LED para eventos, temporadas ou projetos de curta duração com montagem e suporte incluso.
+              </p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary uppercase tracking-wider hover:bg-neutral-light transition-colors"
+              >
+                Faça seu Orçamento
+                <ArrowRight size={16} />
+              </a>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </Section>
 
       {/* Services Grid Section */}
       <Section>
