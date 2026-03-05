@@ -122,6 +122,10 @@ export default async function ServiceDetailPage({ params }: Props) {
             </h2>
             <p className="text-neutral-dark/70 mb-8">
               Entre em contato e receba um orçamento personalizado para a sua necessidade.
+              <br />
+              <span className="font-semibold text-neutral-dark">
+                Disponível para venda e aluguel.
+              </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
