@@ -17,7 +17,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Column 1: Logo + Info */}
           <div className="flex flex-col gap-4">
-            <Logo variant="white" />
+            <Logo />
             <p className="text-sm text-white/60">CNPJ: {SITE.cnpj}</p>
 <div className="flex flex-col gap-1.5 mt-2">
               <span className="flex items-center gap-1.5 text-sm text-white/80">
