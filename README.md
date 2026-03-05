@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/og-image.png" alt="NuvemLED" width="100%" />
+  <img src="public/logo-dark.svg" alt="NuvemLED" width="320" />
 </p>
 
 <p align="center">
