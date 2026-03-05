@@ -30,13 +30,23 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background image */}
+        {/* Background image — mobile */}
         <Image
-          src="/nuvemled-hero.png"
+          src="/nuvemled-hero-mobile.webp"
           alt="Painel de LED NuvemLED iluminando ambiente"
           fill
           priority
-          className="object-cover"
+          sizes="100vw"
+          className="object-cover md:hidden"
+        />
+        {/* Background image — desktop */}
+        <Image
+          src="/nuvemled-hero.webp"
+          alt="Painel de LED NuvemLED iluminando ambiente"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover hidden md:block"
         />
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-primary-dark/30" />
