@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #14107E;
+  --color-primary-dark: #0B0B31;
+  --color-primary-medium: #000960;
+  --color-accent-purple: #430A7D;
+  --color-accent-magenta: #600088;
+  --color-accent-violet: #8702A1;
+  --color-neutral-light: #E1E1E1;
+  --color-neutral-white: #FFFFFF;
+  --color-neutral-dark: #1A1A1A;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-led-pulse: led-pulse 3s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+body {
+  @apply bg-neutral-white text-neutral-dark antialiased;
+}
+
+.gradient-hero {
+  @apply bg-linear-135 from-primary-dark via-primary to-accent-purple;
+}
+
+.gradient-accent {
+  @apply bg-linear-135 from-primary via-accent-magenta to-accent-violet;
+}
+
+.gradient-dark {
+  @apply bg-linear-to-b from-primary-dark to-primary-medium;
+}
+
