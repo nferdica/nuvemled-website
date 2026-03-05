@@ -4,17 +4,9 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
-
-const serviceIconMap: Record<string, React.ElementType> = {
-  "/servicos/igrejas": Church,
-  "/servicos/comercio": Store,
-  "/servicos/totens": Monitor,
-  "/servicos/residencial": Home,
-  "/servicos/outdoor": Sun,
-  "/servicos/show-business": Music,
-};
+import { Menu, X, ChevronDown } from "lucide-react";
+import { navLinks, services } from "@/lib/constants";
+import { serviceIconMap } from "@/lib/icons";
 
 export function Header() {
   const pathname = usePathname();
@@ -29,6 +21,12 @@ function HeaderInner() {
     setOpenDropdown((prev) => (prev === label ? null : label));
   };
 
+  const getIconForHref = (href: string) => {
+    const slug = href.replace("/servicos/", "");
+    const service = services.find((s) => s.slug === slug);
+    return service ? serviceIconMap[service.icon] : undefined;
+  };
+
   return (
     <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,9 +35,8 @@ function HeaderInner() {
             <Image src="/logo-white.svg" alt="NuvemLED" width={160} height={22} priority />
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link) => {
               if ("children" in link) {
                 return (
                   <div key={link.label} className="relative group">
@@ -54,11 +51,10 @@ function HeaderInner() {
                         className="transition-transform duration-200 group-hover:rotate-180"
                       />
                     </button>
-                    {/* Dropdown */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
                       <div className="bg-primary-dark/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/30 border border-white/10 p-2 min-w-[220px]" role="menu">
                         {link.children.map((child) => {
-                          const Icon = serviceIconMap[child.href];
+                          const Icon = getIconForHref(child.href);
                           return (
                             <Link
                               key={child.href}
@@ -89,7 +85,6 @@ function HeaderInner() {
             })}
           </nav>
 
-          {/* Mobile Hamburger */}
           <button
             className="lg:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -100,14 +95,13 @@ function HeaderInner() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <div
         className={`lg:hidden transition-all duration-300 overflow-hidden ${
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="bg-primary-dark/95 backdrop-blur-md border-t border-white/10 px-4 py-4 flex flex-col gap-1">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             if ("children" in link) {
               const isOpen = openDropdown === link.label;
               return (
@@ -132,7 +126,7 @@ function HeaderInner() {
                   >
                     <div className="pl-2 py-1 flex flex-col gap-1">
                       {link.children.map((child) => {
-                        const Icon = serviceIconMap[child.href];
+                        const Icon = getIconForHref(child.href);
                         return (
                           <Link
                             key={child.href}
@@ -160,7 +154,6 @@ function HeaderInner() {
               </Link>
             );
           })}
-
         </nav>
       </div>
     </header>

@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, CheckCircle2, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
-import { PageHero } from "@/components/ui/page-hero";
-import { Section } from "@/components/ui/section";
-import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
-import { SERVICES, SITE } from "@/lib/constants";
-
-const iconMap: Record<string, React.ElementType> = {
-  Church, Store, Monitor, Home, Sun, Music,
-};
+import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section } from "@/components/ui/Section";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { services, getWhatsAppUrl } from "@/lib/constants";
+import { serviceIconMap } from "@/lib/icons";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
-  return SERVICES.map((s) => ({ slug: s.slug }));
+  return services.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const service = services.find((s) => s.slug === slug);
 
   if (!service) {
     return { title: "Serviço não encontrado" };
@@ -35,17 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const service = services.find((s) => s.slug === slug);
 
   if (!service) {
     notFound();
   }
 
-  const Icon = iconMap[service.icon];
-
-  const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
-    `Olá! Gostaria de um orçamento para ${service.title}.`
-  )}`;
+  const Icon = serviceIconMap[service.icon];
+  const whatsappUrl = getWhatsAppUrl(`Olá! Gostaria de um orçamento para ${service.title}.`);
 
   return (
     <>
@@ -54,7 +48,6 @@ export default async function ServiceDetailPage({ params }: Props) {
         subtitle={service.description}
       />
 
-      {/* About */}
       <Section>
         <div className="max-w-3xl">
           <AnimateOnScroll>
@@ -73,7 +66,6 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
       </Section>
 
-      {/* Benefits */}
       <Section dark>
         <AnimateOnScroll>
           <h2 className="text-3xl font-bold text-white mb-10">
@@ -93,7 +85,6 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
       </Section>
 
-      {/* Use Cases */}
       <Section>
         <AnimateOnScroll>
           <h2 className="text-3xl font-bold text-neutral-dark mb-10">
@@ -113,7 +104,6 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
       </Section>
 
-      {/* CTA */}
       <Section>
         <AnimateOnScroll>
           <div className="text-center max-w-2xl mx-auto">

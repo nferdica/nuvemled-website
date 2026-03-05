@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { FAQ_ITEMS } from "@/lib/constants";
+import { faqItems } from "@/lib/constants";
 
 export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -13,7 +13,7 @@ export function FaqAccordion() {
 
   return (
     <div className="flex flex-col gap-3">
-      {FAQ_ITEMS.map((item, index) => {
+      {faqItems.map((item, index) => {
         const isOpen = openIndex === index;
         return (
           <div

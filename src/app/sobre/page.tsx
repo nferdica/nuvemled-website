@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import { PageHero } from "@/components/ui/page-hero";
-import { Section } from "@/components/ui/section";
-import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section } from "@/components/ui/Section";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Lightbulb, Users, Shield } from "lucide-react";
-import { GoogleMap } from "@/components/google-map";
-import { VALUES } from "@/lib/constants";
+import { GoogleMap } from "@/components/GoogleMap";
+import { values } from "@/lib/constants";
 
 const iconMap: Record<string, React.ElementType> = { Lightbulb, Users, Shield };
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </div>
 
         <div className="grid sm:grid-cols-3 gap-8">
-          {VALUES.map((value, index) => {
+          {values.map((value, index) => {
             const Icon = iconMap[value.icon];
             return (
               <AnimateOnScroll key={value.title} delay={index * 0.1}>

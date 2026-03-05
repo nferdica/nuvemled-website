@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-import { PageHero } from "@/components/ui/page-hero";
-import { Section } from "@/components/ui/section";
-import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
-import { SITE } from "@/lib/constants";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section } from "@/components/ui/Section";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { getWhatsAppUrl } from "@/lib/constants";
+import { WhatsAppIcon } from "@/lib/icons";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContatoPage() {
-  const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
-
   return (
     <>
       <PageHero
@@ -27,7 +25,7 @@ export default function ContatoPage() {
           <AnimateOnScroll>
             <div className="mb-8">
               <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10 mb-6">
-                <FaWhatsapp className="h-8 w-8 text-green-500" />
+                <WhatsAppIcon className="h-8 w-8 text-green-500" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-dark mb-4">
                 Fale conosco pelo WhatsApp
@@ -38,7 +36,7 @@ export default function ContatoPage() {
                 rápido e personalizado para o seu projeto de LED.
               </p>
               <a
-                href={whatsappUrl}
+                href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-green-500 px-10 py-4 text-sm font-bold text-white uppercase tracking-wider hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"
@@ -48,7 +46,6 @@ export default function ContatoPage() {
               </a>
             </div>
           </AnimateOnScroll>
-
         </div>
       </Section>
     </>

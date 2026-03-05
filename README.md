@@ -32,8 +32,9 @@ A **NuvemLED** é uma empresa especializada em painéis de LED, atendendo igreja
 ```
 src/
 ├── app/
-│   ├── page.tsx                  # Homepage
+│   ├── page.tsx                  # Homepage (composição de sections)
 │   ├── layout.tsx                # Root layout (metadata, SEO, structured data)
+│   ├── not-found.tsx             # Página 404 customizada
 │   ├── globals.css               # Estilos globais e tema de cores
 │   ├── robots.ts                 # Configuração robots.txt
 │   ├── sitemap.ts                # Sitemap XML dinâmico
@@ -43,19 +44,27 @@ src/
 │       ├── page.tsx              # Listagem de serviços
 │       └── [slug]/page.tsx       # Página dinâmica de cada serviço
 ├── components/
-│   ├── header.tsx                # Navegação com dropdown e menu mobile
-│   ├── footer.tsx                # Footer com links e informações
-│   ├── logo.tsx                  # Logo SVG (variantes white/blue/black)
-│   ├── whatsapp-fab.tsx          # Botão flutuante do WhatsApp
-│   ├── google-map.tsx            # Mapa do Google embeddado
-│   ├── faq-accordion.tsx         # Accordion de perguntas frequentes
+│   ├── Header.tsx                # Navegação com dropdown e menu mobile
+│   ├── Footer.tsx                # Footer com links e informações
+│   ├── WhatsAppFAB.tsx           # Botão flutuante do WhatsApp
+│   ├── GoogleMap.tsx             # Mapa do Google embeddado
+│   ├── FaqAccordion.tsx          # Accordion de perguntas frequentes
+│   ├── sections/
+│   │   ├── HeroSection.tsx       # Hero principal com imagem de fundo
+│   │   ├── MarqueeBanner.tsx     # Banner animado com marquee
+│   │   ├── VendaAluguelSection.tsx # Seção de venda e aluguel
+│   │   ├── ServicesGridSection.tsx  # Grid de serviços
+│   │   ├── PhilosophySection.tsx # Seção de filosofia da empresa
+│   │   ├── FaqSection.tsx        # Seção de perguntas frequentes
+│   │   └── CtaSection.tsx        # Call-to-action final
 │   └── ui/
-│       ├── section.tsx           # Wrapper de seção (light/dark)
-│       ├── page-hero.tsx         # Hero reutilizável para subpáginas
-│       ├── animate-on-scroll.tsx # Animação de entrada no scroll
-│       └── led-grid-pattern.tsx  # Pattern SVG decorativo
+│       ├── Section.tsx           # Wrapper de seção (light/dark)
+│       ├── PageHero.tsx          # Hero reutilizável para subpáginas
+│       ├── AnimateOnScroll.tsx   # Animação de entrada no scroll
+│       └── LedGridPattern.tsx    # Pattern SVG decorativo
 └── lib/
-    └── constants.ts              # Dados centralizados (serviços, FAQ, nav, contato)
+    ├── constants.ts              # Dados centralizados (serviços, FAQ, nav, contato)
+    └── icons.tsx                 # Mapeamento de ícones e SVGs de marca (WhatsApp, Instagram)
 ```
 
 ## Começando
@@ -98,7 +107,7 @@ npm run lint
 O projeto usa **CI/CD com GitHub Actions** + **Easypanel**:
 
 ```
-Push/PR → main  →  lint + build  →  ✅ validação
+Push/PR → main  →  lint + build  →  validação
 Push → main     →  lint + build  →  webhook POST  →  Easypanel rebuild
 ```
 
@@ -123,7 +132,11 @@ A imagem final usa `output: "standalone"` do Next.js (~330MB vs ~1GB com node_mo
 
 ### Data-Driven
 
-Todo o conteúdo de serviços, FAQ, navegação e informações de contato vem de `src/lib/constants.ts`. Para adicionar um novo serviço, basta inserir um item no array `SERVICES` — a página dinâmica `[slug]`, o sitemap e a navegação se atualizam automaticamente.
+Todo o conteúdo de serviços, FAQ, navegação e informações de contato vem de `src/lib/constants.ts`. Para adicionar um novo serviço, basta inserir um item no array `services` e o link em `navLinks` — a página dinâmica `[slug]`, o sitemap, o grid e a navegação se atualizam automaticamente.
+
+### Componentização
+
+A homepage é composta por seções independentes em `src/components/sections/`, cada uma responsável por uma parte da página. Ícones de serviço são centralizados em `src/lib/icons.tsx` via `serviceIconMap`, e a URL do WhatsApp é gerada pelo helper `getWhatsAppUrl()` em `constants.ts`.
 
 ### SEO
 
@@ -131,6 +144,7 @@ Todo o conteúdo de serviços, FAQ, navegação e informações de contato vem d
 - Structured Data (JSON-LD) para LocalBusiness
 - Sitemap XML gerado dinamicamente
 - robots.txt configurado
+- Página 404 customizada com identidade visual
 - Security headers (X-Content-Type-Options, X-Frame-Options, X-XSS-Protection, Referrer-Policy)
 
 ### Performance

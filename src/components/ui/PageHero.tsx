@@ -1,4 +1,4 @@
-import { AnimateOnScroll } from "./animate-on-scroll";
+import { AnimateOnScroll } from "./AnimateOnScroll";
 
 interface PageHeroProps {
   title: string;
