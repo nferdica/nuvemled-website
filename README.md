@@ -1,9 +1,5 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="public/logo-white.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="public/logo-dark.svg" />
-    <img src="public/logo-dark.svg" alt="NuvemLED" width="320" />
-  </picture>
+  <img src="public/og-image.png" alt="NuvemLED" width="480" />
 </p>
 
 <p align="center">
