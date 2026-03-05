@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Church, Store, Monitor, Home, Sun, Music } from "lucide-react";
@@ -17,14 +17,13 @@ const serviceIconMap: Record<string, React.ElementType> = {
 };
 
 export function Header() {
+  const pathname = usePathname();
+  return <HeaderInner key={pathname} />;
+}
+
+function HeaderInner() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setMobileOpen(false);
-    setOpenDropdown(null);
-  }, [pathname]);
 
   const toggleMobileDropdown = (label: string) => {
     setOpenDropdown((prev) => (prev === label ? null : label));
