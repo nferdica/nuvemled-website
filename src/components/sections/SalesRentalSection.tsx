@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { getWhatsAppUrl } from "@/lib/constants";
 
-export function VendaAluguelSection() {
+export function SalesRentalSection() {
   const whatsappUrl = getWhatsAppUrl();
 
   return (

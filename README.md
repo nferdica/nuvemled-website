@@ -38,9 +38,9 @@ src/
 │   ├── globals.css               # Estilos globais e tema de cores
 │   ├── robots.ts                 # Configuração robots.txt
 │   ├── sitemap.ts                # Sitemap XML dinâmico
-│   ├── contato/page.tsx          # Página de contato
-│   ├── sobre/page.tsx            # Página sobre
-│   └── servicos/
+│   ├── contact/page.tsx          # Página de contato
+│   ├── about/page.tsx            # Página sobre
+│   └── services/
 │       ├── page.tsx              # Listagem de serviços
 │       └── [slug]/page.tsx       # Página dinâmica de cada serviço
 ├── components/
@@ -52,7 +52,7 @@ src/
 │   ├── sections/
 │   │   ├── HeroSection.tsx       # Hero principal com imagem de fundo
 │   │   ├── MarqueeBanner.tsx     # Banner animado com marquee
-│   │   ├── VendaAluguelSection.tsx # Seção de venda e aluguel
+│   │   ├── SalesRentalSection.tsx  # Seção de venda e aluguel
 │   │   ├── ServicesGridSection.tsx  # Grid de serviços
 │   │   ├── PhilosophySection.tsx # Seção de filosofia da empresa
 │   │   ├── FaqSection.tsx        # Seção de perguntas frequentes

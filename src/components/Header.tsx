@@ -22,7 +22,7 @@ function HeaderInner() {
   };
 
   const getIconForHref = (href: string) => {
-    const slug = href.replace("/servicos/", "");
+    const slug = href.replace("/services/", "");
     const service = services.find((s) => s.slug === slug);
     return service ? serviceIconMap[service.icon] : undefined;
   };

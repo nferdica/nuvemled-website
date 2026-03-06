@@ -25,7 +25,7 @@ export function ServicesGridSection() {
           return (
             <AnimateOnScroll key={service.slug} delay={index * 0.1}>
               <Link
-                href={`/servicos/${service.slug}`}
+                href={`/services/${service.slug}`}
                 className="group block rounded-2xl border border-neutral-light p-8 hover:shadow-xl transition-all duration-300 hover:border-primary/30"
               >
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
