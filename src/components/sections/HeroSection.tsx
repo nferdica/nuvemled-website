@@ -43,7 +43,7 @@ export function HeroSection() {
         <AnimateOnScroll delay={0.4}>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
-              href="/servicos"
+              href="/services"
               className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary uppercase tracking-wider hover:bg-neutral-light transition-colors"
             >
               CONHEÇA

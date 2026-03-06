@@ -30,7 +30,7 @@ export default function ServicesPage() {
             return (
               <AnimateOnScroll key={service.slug} delay={index * 0.1}>
                 <Link
-                  href={`/servicos/${service.slug}`}
+                  href={`/services/${service.slug}`}
                   className="group block rounded-2xl overflow-hidden border border-neutral-light hover:border-primary transition-colors duration-300 shadow-sm hover:shadow-md"
                 >
                   <div className={`relative aspect-video overflow-hidden ${

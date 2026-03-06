@@ -18,23 +18,23 @@ export const navLinks = [
   { label: "Início", href: "/" },
   {
     label: "Serviços",
-    href: "/servicos",
+    href: "/services",
     children: [
-      { label: "Igrejas", href: "/servicos/igrejas" },
-      { label: "Comércio", href: "/servicos/comercio" },
-      { label: "Totens de LED", href: "/servicos/totens" },
-      { label: "Residencial", href: "/servicos/residencial" },
-      { label: "Outdoor", href: "/servicos/outdoor" },
-      { label: "Show Business", href: "/servicos/show-business" },
+      { label: "Igrejas", href: "/services/churches" },
+      { label: "Comércio", href: "/services/commerce" },
+      { label: "Totens de LED", href: "/services/totems" },
+      { label: "Residencial", href: "/services/residential" },
+      { label: "Outdoor", href: "/services/outdoor" },
+      { label: "Show Business", href: "/services/show-business" },
     ],
   },
-  { label: "Sobre", href: "/sobre" },
-  { label: "Contato", href: "/contato" },
+  { label: "Sobre", href: "/about" },
+  { label: "Contato", href: "/contact" },
 ] as const;
 
 export const services = [
   {
-    slug: "igrejas",
+    slug: "churches",
     title: "Igrejas",
     description:
       "Painéis de LED que transformam espaços de adoração, combinando beleza e eficiência energética.",
@@ -50,7 +50,7 @@ export const services = [
     useCases: ["Cultos e celebrações", "Transmissões ao vivo", "Eventos especiais", "Decoração permanente"],
   },
   {
-    slug: "comercio",
+    slug: "commerce",
     title: "Comércio",
     description:
       "Soluções de LED para comércios que atraem clientes e destacam sua marca.",
@@ -66,7 +66,7 @@ export const services = [
     useCases: ["Vitrines interativas", "Fachadas luminosas", "Menu boards digitais", "Sinalização interna"],
   },
   {
-    slug: "totens",
+    slug: "totems",
     title: "Totens de LED",
     description:
       "Totens de LED que oferecem comunicação visual impactante, adaptável a qualquer espaço.",
@@ -82,7 +82,7 @@ export const services = [
     useCases: ["Shoppings e centros comerciais", "Recepções corporativas", "Aeroportos e terminais", "Praças e espaços públicos"],
   },
   {
-    slug: "residencial",
+    slug: "residential",
     title: "Residencial",
     description:
       "Painéis de LED que trazem eficiência e personalização, transformando ambientes residenciais.",

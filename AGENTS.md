@@ -57,7 +57,7 @@ Site institucional da **NuvemLED** — empresa de painéis de LED sediada em Mar
 
 O array `services` em `constants.ts` é a fonte única de verdade para:
 - Grid de serviços na homepage (`ServicesGridSection`)
-- Páginas dinâmicas `/servicos/[slug]`
+- Páginas dinâmicas `/services/[slug]`
 - Links do dropdown no header (derivados de `navLinks`)
 - Sitemap XML
 - Geração de rotas estáticas (`generateStaticParams`)
@@ -74,10 +74,10 @@ Para adicionar um novo serviço:
 | Rota | Arquivo | Descrição |
 |------|---------|-----------|
 | `/` | `app/page.tsx` | Homepage (composição de 7 sections + mapa) |
-| `/servicos` | `app/servicos/page.tsx` | Grid de todos os serviços |
-| `/servicos/[slug]` | `app/servicos/[slug]/page.tsx` | Detalhe do serviço (SSG) |
-| `/sobre` | `app/sobre/page.tsx` | Sobre a empresa e valores |
-| `/contato` | `app/contato/page.tsx` | Contato via WhatsApp |
+| `/services` | `app/services/page.tsx` | Grid de todos os serviços |
+| `/services/[slug]` | `app/services/[slug]/page.tsx` | Detalhe do serviço (SSG) |
+| `/about` | `app/about/page.tsx` | Sobre a empresa e valores |
+| `/contact` | `app/contact/page.tsx` | Contato via WhatsApp |
 | `404` | `app/not-found.tsx` | Página não encontrada (identidade visual) |
 
 ## Componentes
@@ -95,7 +95,7 @@ Para adicionar um novo serviço:
 |-----------|---------|-----------|
 | `HeroSection` | `components/sections/HeroSection.tsx` | Hero com imagens WebP (desktop/mobile) |
 | `MarqueeBanner` | `components/sections/MarqueeBanner.tsx` | Banner animado com marquee CSS |
-| `VendaAluguelSection` | `components/sections/VendaAluguelSection.tsx` | Venda e aluguel com CTAs WhatsApp |
+| `SalesRentalSection` | `components/sections/SalesRentalSection.tsx` | Venda e aluguel com CTAs WhatsApp |
 | `ServicesGridSection` | `components/sections/ServicesGridSection.tsx` | Grid de serviços data-driven |
 | `PhilosophySection` | `components/sections/PhilosophySection.tsx` | Filosofia da empresa |
 | `FaqSection` | `components/sections/FaqSection.tsx` | Wrapper da seção de FAQ |

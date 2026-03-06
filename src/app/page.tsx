@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { MarqueeBanner } from "@/components/sections/MarqueeBanner";
-import { VendaAluguelSection } from "@/components/sections/VendaAluguelSection";
+import { SalesRentalSection } from "@/components/sections/SalesRentalSection";
 import { ServicesGridSection } from "@/components/sections/ServicesGridSection";
 import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -19,7 +19,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <MarqueeBanner />
-      <VendaAluguelSection />
+      <SalesRentalSection />
       <ServicesGridSection />
       <PhilosophySection />
       <FaqSection />
